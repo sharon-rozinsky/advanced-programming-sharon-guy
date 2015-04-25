@@ -14,6 +14,16 @@ public:
 	// Ctor's
 	DayCalendar_t();
 	DayCalendar_t(const string name) : name(name){}
+	~DayCalendar_t()
+	{
+		Meeting_t<T>* meeting;
+		typename std::vector<Meeting_t<T>*>::iterator iterator;
+		for (iterator = meetings.begin(); iterator < meetings.end(); iterator++)
+		{
+			meeting = *iterator;
+			delete meeting;
+		}
+	}
 
 	// Accessors
 	void setName(const string name)
