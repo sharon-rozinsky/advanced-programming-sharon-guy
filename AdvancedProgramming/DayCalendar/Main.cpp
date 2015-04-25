@@ -87,7 +87,7 @@ int main() {
 	int calType = 0;
 	
 	string calName;
-	cout << "Init day calendar, please choose calendar type.\n1. Integer.\n2.float.\n";
+	cout << "Init day calendar, please choose calendar type.\n1. Integer.\n2. Float.\n";
 	cin >> calType;
 	cout << endl;
 	cout << "Enter calendar name: " << endl;
