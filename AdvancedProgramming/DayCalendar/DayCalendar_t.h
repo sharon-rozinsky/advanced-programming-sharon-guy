@@ -99,7 +99,8 @@ private:
 		{
 			Meeting_t<T>* curMeeting = *iterator;
 			if ((meeting.getStartTime() >= curMeeting->getStartTime() && meeting.getStartTime() < curMeeting->getEndTime()) ||
-				(meeting.getEndTime() > curMeeting->getStartTime() && meeting.getStartTime() <= curMeeting->getEndTime()))
+				(meeting.getEndTime() > curMeeting->getStartTime() && meeting.getEndTime() <= curMeeting->getEndTime()) ||
+				(meeting.getStartTime() < curMeeting->getStartTime() && meeting.getEndTime() > curMeeting->getEndTime()))
 				return true;
 		}
 		return false;

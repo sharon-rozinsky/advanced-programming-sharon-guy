@@ -43,3 +43,6 @@ Temporary Items
 .apdisk
 AdvancedProgramming/AdvancedProgramming.opensdf
 *.sdf
+AdvancedProgramming/AdvancedProgramming.sln
+*.suo
+AdvancedProgramming/DayCalendar/Debug/DayCalendar.log
