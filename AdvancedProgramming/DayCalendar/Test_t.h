@@ -10,7 +10,7 @@ public:
 	Test_t();
 	Test_t(const string name)
 	{
-		dayCal = new DayCalendar_t(name);
+		dayCal = new DayCalendar_t<T>(name);
 	}
 	~Test_t()
 	{
@@ -30,12 +30,12 @@ public:
 	}
 	void removeMeeting(Meeting_t<T>* meeting)
 	{
-		dayCal->removeMeeting(meeting);
+		dayCal->removeMeeting(meeting->getStartTime());
 	}
 	void	find(Meeting_t<T>* meeting)
 	{
 		Meeting_t<T>* foundMeeting;
-		foundMeeting = dayCal->findMeeting(meeting);
+		foundMeeting = dayCal->findMeeting(meeting->getStartTime());
 		if (foundMeeting)
 		{
 			cout << "Meeting found:" << endl;
