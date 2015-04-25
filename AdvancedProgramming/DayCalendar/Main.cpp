@@ -1,28 +1,154 @@
 #include <iostream>
-#include <stdio.h>
 #include "DayCalendar_t.h"
 #include "Meeting_t.h"
+#include "Test_t.h"
 using namespace std;
 
 
+//==============================================================
+Meeting_t<int>* getMeetingInt()
+{
+	string subject;
+	int startTime;
+	int endTime;
+
+	cout << "Enter meeting details" << endl;
+	cout << "subject: ";
+	cin >> subject;
+	cout << "start time: ";
+	cin >> startTime;
+	cout << "end time: ";
+	cin >> endTime;
+
+	return new Meeting_t<int>(subject, startTime, endTime);
+}
+
+Meeting_t<float>* getMeetingFloat()
+{
+	string subject;
+	float startTime;
+	float endTime;
+
+	cout << "Enter meeting details" << endl;
+	cout << "subject: ";
+	cin >> subject;
+	cout << "start time: ";
+	cin >> startTime;
+	cout << "end time: ";
+	cin >> endTime;
+
+	return new Meeting_t<float>(subject, startTime, endTime);
+}
+
+
 int main() {
-	Meeting_t<int>* meeting = new Meeting_t<int>("meeting1", 5, 7);
-	Meeting_t<int>* meeting2 = new Meeting_t<int>("meeting2", 3, 4);
-	Meeting_t<int>* meeting3 = new Meeting_t<int>("meeting3", 10, 12);
-	Meeting_t<int>* meeting4 = new Meeting_t<int>("meeting4", 1, 2);
-	Meeting_t<int>* meeting5 = new Meeting_t<int>("meeting5", 6, 8);
-	DayCalendar_t<int> *cal = new DayCalendar_t<int>("cal");
-	cal->addMeeting(meeting);
-	cal->addMeeting(meeting2);
-	cal->addMeeting(meeting3);
-	cal->addMeeting(meeting4);
-	cal->addMeeting(meeting5);
-	cal->printCalendar();
-	cal->findMeeting(5);
-	cal->removeMeeting(5);
-	cal->printCalendar();
-	cal->removeMeeting(5);
-	cal->printCalendar();
-	getchar();
+	bool cont = true;			// trigger to stop loop
+	bool intCal = true;
+	int calType = 0;
+	
+	string calName;
+	cout << "Init day calendar, please choose calendar type.\n1. Integer.\n2.float.\n";
+	cin >> calType;
+	cout << endl;
+	cout << "Enter calendar name: " << endl;
+	cin >> calName;
+
+	if (calType == 1)
+	{
+		Test_t<int>* test = new Test_t<int>(calName);
+		while (cont) {
+			unsigned int c;
+			Meeting_t<int>* meetingInt;
+			Meeting_t<float>* meetingFloat;
+			int index;
+
+			cout << "Enter your choice:" << endl
+				<< "1 - add meeting" << endl
+				<< "2 - find meeting" << endl
+				<< "3 - remove meeting" << endl
+				<< "4 - print calendar" << endl
+				<< "0 - quit" << endl;
+			cin >> c;
+
+			switch (c) {
+			case 1:
+				test->addMeeting(getMeetingInt());
+				break;
+			case 2:
+				meetingInt = getMeetingInt();
+				test->find(meetingInt);
+				delete meetingInt;
+				break;
+			case 3:
+				meetingInt = getMeetingInt();
+				test->removeMeeting(meetingInt);
+				delete meetingInt;
+				break;
+			case 4:
+				test->print();
+				break;
+			case 0:
+				cont = false;
+				break;
+			default:
+				cont = false;
+				break;
+			}
+
+			cout << "----------------------------------------------" << endl;
+
+			delete test;
+		}
+	}
+	else
+	{
+		Test_t<float>* test = new Test_t<float>(calName);
+		while (cont) {
+			unsigned int c;
+			Meeting_t<int>* meetingInt;
+			Meeting_t<float>* meetingFloat;
+			int index;
+
+			cout << "Enter your choice:" << endl
+				<< "1 - add meeting" << endl
+				<< "2 - find meeting" << endl
+				<< "3 - remove meeting" << endl
+				<< "4 - print calendar" << endl
+				<< "0 - quit" << endl;
+			cin >> c;
+
+			switch (c) {
+			case 1:
+				test->addMeeting(getMeetingFloat());
+				break;
+			case 2:
+				meetingFloat = getMeetingFloat();
+				test->find(meetingFloat);
+				delete meetingFloat;
+				break;
+			case 3:
+				meetingFloat = getMeetingFloat();
+				test->removeMeeting(meetingFloat);
+				delete meetingFloat;
+				break;
+			case 4:
+				test->print();
+				break;
+			case 0:
+				cont = false;
+				break;
+			default:
+				cont = false;
+				break;
+			}
+
+			cout << "----------------------------------------------" << endl;
+
+			delete test;
+		}
+	}
+
+	
+
 	return 0;
 }
