@@ -51,10 +51,21 @@ public:
 	}
 
 	// Operators
-
-	bool operator < (const Meeting_t<T>& str) const
+	bool operator < (const Meeting_t<T>& other) const
 	{
-		return (startTime < str.getStartTime());
+		return (startTime < other.getStartTime());
+	}
+	bool operator <= (const Meeting_t<T>& other) const
+	{
+		return (startTime <= other.getStartTime());
+	}
+	bool operator > (const Meeting_t<T>& other) const
+	{
+		return (startTime > other.getStartTime());
+	}
+	bool operator >= (const Meeting_t<T>& other) const
+	{
+		return (startTime >= other.getStartTime());
 	}
 
 private:

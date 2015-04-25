@@ -42,8 +42,13 @@ public:
 	}
 	void addMeeting(Meeting_t<T>* meeting)
 	{
-		meetings.push_back(meeting);
-		sort(meetings.begin(), meetings.end(), PointerCompare());
+		if (isOverlapping(*meeting))
+			cout << "The meeting overlaps another meeting, please set a different time" << endl;
+		else
+		{
+			meetings.push_back(meeting);
+			sort(meetings.begin(), meetings.end(), PointerCompare());
+		}
 	}
 	void removeMeeting(T startTime)
 	{
@@ -85,6 +90,20 @@ public:
 private:
 	string name; //Owner or company name
 	vector<Meeting_t<T>*> meetings;
+	
+	bool isOverlapping(const Meeting_t<T> meeting)
+	{
+		typename std::vector<Meeting_t<T>*>::iterator iterator;
+
+		for (iterator = meetings.begin(); iterator < meetings.end(); iterator++)
+		{
+			Meeting_t<T>* curMeeting = *iterator;
+			if ((meeting.getStartTime() >= curMeeting->getStartTime() && meeting.getStartTime() < curMeeting->getEndTime()) ||
+				(meeting.getEndTime() > curMeeting->getStartTime() && meeting.getStartTime() <= curMeeting->getEndTime()))
+				return true;
+		}
+		return false;
+	}
 };
 
 
