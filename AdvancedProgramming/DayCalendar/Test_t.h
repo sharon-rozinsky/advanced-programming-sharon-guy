@@ -19,7 +19,14 @@ public:
 
 	void addMeeting(Meeting_t<T>* meeting)
 	{
-		dayCal->addMeeting(meeting);
+		try{
+			dayCal->addMeeting(meeting);
+			cout << "Meeting added successfully" << endl;
+		}
+		catch (const string exceptionMsg)
+		{
+			cout << exceptionMsg << endl;
+		}
 	}
 	void removeMeeting(Meeting_t<T>* meeting)
 	{
@@ -27,7 +34,17 @@ public:
 	}
 	void	find(Meeting_t<T>* meeting)
 	{
-		dayCal->findMeeting(meeting);
+		Meeting_t<T>* foundMeeting;
+		foundMeeting = dayCal->findMeeting(meeting);
+		if (foundMeeting)
+		{
+			cout << "Meeting found:" << endl;
+			foundMeeting->printMeeting();
+		}
+		else
+		{
+			cout << "Meeting not found" << endl;
+		}
 	}
 	void	print()
 	{
