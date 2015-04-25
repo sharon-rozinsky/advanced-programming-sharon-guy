@@ -43,7 +43,10 @@ public:
 	void addMeeting(Meeting_t<T>* meeting)
 	{
 		if (isOverlapping(*meeting))
-			cout << "The meeting overlaps another meeting, please set a different time" << endl;
+		{
+			string tmp = "The meeting overlaps another meeting, please set a different time";
+			throw(tmp);
+		}
 		else
 		{
 			meetings.push_back(meeting);
