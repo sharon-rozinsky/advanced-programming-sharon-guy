@@ -40,7 +40,7 @@ public:
 	}
 
 	// Class Methods
-	void printMeeting()
+	virtual void printMeeting()
 	{
 		cout << subject << ": " << startTime << " - " << endTime << endl;
 	}
@@ -63,7 +63,7 @@ public:
 		return (startTime >= other.getStartTime());
 	}
 
-private:
+protected:
 	string	subject;
 	T		startTime;
 	T		endTime;
