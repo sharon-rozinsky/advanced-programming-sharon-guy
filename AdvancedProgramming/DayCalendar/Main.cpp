@@ -123,14 +123,10 @@ int main() {
 				test->addMeeting(getExtendedMeetingInt());
 				break;
 			case 3:
-				meetingInt = getMeetingInt();
-				test->find(meetingInt);
-				delete meetingInt;
+				test->find();
 				break;
 			case 4:
-				meetingInt = getMeetingInt();
-				test->removeMeeting(meetingInt);
-				delete meetingInt;
+				test->removeMeeting();
 				break;
 			case 5:
 				test->print();
@@ -172,14 +168,10 @@ int main() {
 				test->addMeeting(getExtendedMeetingFloat());
 				break;
 			case 3:
-				meetingFloat = getMeetingFloat();
-				test->find(meetingFloat);
-				delete meetingFloat;
+				test->find();
 				break;
 			case 4:
-				meetingFloat = getMeetingFloat();
-				test->removeMeeting(meetingFloat);
-				delete meetingFloat;
+				test->removeMeeting();
 				break;
 			case 5:
 				test->print();

@@ -28,14 +28,21 @@ public:
 			cout << exceptionMsg << endl;
 		}
 	}
-	void removeMeeting(Meeting_t<T>* meeting)
+	void removeMeeting()
 	{
-		dayCal->removeMeeting(meeting->getStartTime());
+		int startTime;
+		cout << "Please enter the start time of the meeting you want to remove: " << endl;
+		cin >> startTime;
+		dayCal->removeMeeting(startTime);
 	}
-	void	find(Meeting_t<T>* meeting)
+	void find()
 	{
+		int startTime;
 		Meeting_t<T>* foundMeeting;
-		foundMeeting = dayCal->findMeeting(meeting->getStartTime());
+
+		cout << "Please enter the start time of the meeting you want to find: " << endl;
+		cin >> startTime;
+		foundMeeting = dayCal->findMeeting(startTime);
 		if (foundMeeting)
 		{
 			cout << "Meeting found:" << endl;
