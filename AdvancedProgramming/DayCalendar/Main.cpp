@@ -15,7 +15,8 @@ Meeting_t<int>* getMeetingInt()
 
 	cout << "Enter meeting details" << endl;
 	cout << "subject: ";
-	cin >> subject;
+	cin.get();
+	std::getline(std::cin, subject);
 	cout << "start time: ";
 	cin >> startTime;
 	cout << "end time: ";
@@ -32,7 +33,8 @@ Meeting_t<float>* getMeetingFloat()
 
 	cout << "Enter meeting details" << endl;
 	cout << "subject: ";
-	cin >> subject;
+	cin.get();
+	std::getline(std::cin, subject);
 	cout << "start time: ";
 	cin >> startTime;
 	cout << "end time: ";
@@ -50,13 +52,15 @@ ExtendedMeeting_t<int>* getExtendedMeetingInt()
 
 	cout << "Enter meeting details" << endl;
 	cout << "subject: ";
-	cin >> subject;
+	cin.get();
+	std::getline(std::cin, subject);
 	cout << "start time: ";
 	cin >> startTime;
 	cout << "end time: ";
 	cin >> endTime;
 	cout << "location: ";
-	cin >> location;
+	cin.get();
+	std::getline(std::cin, location);
 
 	return new ExtendedMeeting_t<int>(subject, startTime, endTime, location);
 }
@@ -70,13 +74,15 @@ ExtendedMeeting_t<float>* getExtendedMeetingFloat()
 
 	cout << "Enter meeting details" << endl;
 	cout << "subject: ";
-	cin >> subject;
+	cin.get();
+	std::getline(std::cin, subject);
 	cout << "start time: ";
 	cin >> startTime;
 	cout << "end time: ";
 	cin >> endTime;
 	cout << "location: ";
-	cin >> location;
+	cin.get();
+	std::getline(std::cin, location);
 
 	return new ExtendedMeeting_t<float>(subject, startTime, endTime, location);
 }
@@ -85,14 +91,14 @@ int main() {
 	bool cont = true;			// trigger to stop loop
 	bool intCal = true;
 	int calType = 0;
-	
 	string calName;
+
 	cout << "Init day calendar, please choose calendar type.\n1. Integer.\n2. Float.\n";
 	cin >> calType;
 	cout << endl;
 	cout << "Enter calendar name: " << endl;
-	cin >> calName;
-
+	cin.get();
+	std::getline(std::cin, calName);
 	if (calType == 1)
 	{
 		Test_t<int>* test = new Test_t<int>(calName);
@@ -138,9 +144,9 @@ int main() {
 			}
 
 			cout << "----------------------------------------------" << endl;
-
-			delete test;
 		}
+		delete test;
+
 	}
 	else
 	{
@@ -188,8 +194,8 @@ int main() {
 
 			cout << "----------------------------------------------" << endl;
 
-			delete test;
 		}
+		delete test;
 	}
 	return 0;
 }
