@@ -26,6 +26,7 @@ public:
 		catch (const string exceptionMsg)
 		{
 			cout << exceptionMsg << endl;
+			delete meeting;
 		}
 	}
 	void removeMeeting()
