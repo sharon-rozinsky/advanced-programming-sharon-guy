@@ -79,7 +79,9 @@ public:
 		}
 
 		if (deleteMeeting)
+		{
 			meetings.erase(meetingToDelete);
+		}
 	}
 	Meeting_t<T>* findMeeting(T startTime)
 	{
@@ -91,6 +93,17 @@ public:
 		}
 		// TODO: replace with throw exception
 		return NULL;
+	}
+	void addMeetingLocation(T startTime, string meetingLocation)
+	{
+		Meeting_t<T>* meeting = findMeeting(startTime);
+		ExtendedMeeting_t<T>* meetingWithLocation;
+		if (meeting != NULL)
+		{
+			meetingWithLocation = new ExtendedMeeting_t<T>(meeting->getsubject(), meeting->getStartTime(), meeting->getEndTime(), meetingLocation);
+			removeMeeting(startTime);
+			addMeeting(meetingWithLocation);
+		}
 	}
 
 	// Operators
