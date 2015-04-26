@@ -104,6 +104,11 @@ public:
 			removeMeeting(startTime);
 			addMeeting(meetingWithLocation);
 		}
+		else
+		{
+			string tmp = "No meeting found for the specified start time";
+			throw(tmp);
+		}
 	}
 
 	// Operators

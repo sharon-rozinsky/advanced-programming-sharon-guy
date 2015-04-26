@@ -111,7 +111,8 @@ int main() {
 				<< "2 - add meeting with location" << endl
 				<< "3 - find meeting" << endl
 				<< "4 - remove meeting" << endl
-				<< "5 - print calendar" << endl
+				<< "5 - update meeting location" << endl
+				<< "6 - print calendar" << endl
 				<< "0 - quit" << endl;
 			cin >> c;
 
@@ -129,6 +130,9 @@ int main() {
 				test->removeMeeting();
 				break;
 			case 5:
+				test->updatedMeetingLocation();
+				break;
+			case 6:
 				test->print();
 				break;
 			case 0:
@@ -156,7 +160,8 @@ int main() {
 				<< "2 - add meeting with location" << endl
 				<< "3 - find meeting" << endl
 				<< "4 - remove meeting" << endl
-				<< "5 - print calendar" << endl
+				<< "5 - update meeting location" << endl
+				<< "6 - print calendar" << endl
 				<< "0 - quit" << endl;
 			cin >> c;
 
@@ -174,6 +179,9 @@ int main() {
 				test->removeMeeting();
 				break;
 			case 5:
+				test->updatedMeetingLocation();
+				break;
+			case 6:
 				test->print();
 				break;
 			case 0:
