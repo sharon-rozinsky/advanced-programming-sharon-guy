@@ -54,8 +54,13 @@ public:
 	{
 		if (isOverlapping(*meeting))
 		{
-			string tmp = "The meeting overlaps another meeting, please set a different time";
-			throw(tmp);
+			string exceptionMsg = "The meeting overlaps another meeting, please set a different time";
+			throw(exceptionMsg);
+		}
+		else if (!verifyMeetingHours(*meeting))
+		{
+			string exceptionMsg = "The meeting is defined with incorrect hours, please choose [0-24] as hours";
+			throw(exceptionMsg);
 		}
 		else
 		{
@@ -102,7 +107,14 @@ public:
 		{
 			meetingWithLocation = new ExtendedMeeting_t<T>(meeting->getsubject(), meeting->getStartTime(), meeting->getEndTime(), meetingLocation);
 			removeMeeting(startTime);
-			addMeeting(meetingWithLocation);
+			try
+			{
+				addMeeting(meetingWithLocation);
+			}
+			catch (const string exceptionMsg)
+			{
+				cout << exceptionMsg << endl;
+			}
 		}
 		else
 		{
@@ -135,6 +147,15 @@ private:
 				return true;
 		}
 		return false;
+	}
+
+	bool verifyMeetingHours(const Meeting_t<T> meeting)
+	{
+		if (meeting.getStartTime() < 0 || meeting.getStartTime() > 24)
+			return false;
+		if (meeting.getEndTime() < 0 || meeting.getEndTime() > 24)
+			return false;
+		return true;
 	}
 };
 
