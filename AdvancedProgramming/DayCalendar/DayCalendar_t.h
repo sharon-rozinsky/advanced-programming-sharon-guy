@@ -14,7 +14,7 @@ public:
 	// Ctor's
 	DayCalendar_t();
 	DayCalendar_t(const string name) : name(name){}
-	~DayCalendar_t()
+	virtual ~DayCalendar_t()
 	{
 		Meeting_t<T>* meeting;
 		typename std::vector<Meeting_t<T>*>::iterator iterator;

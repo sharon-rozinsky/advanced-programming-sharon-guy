@@ -12,7 +12,11 @@ public:
 	// Ctor's
 	Meeting_t();
 	Meeting_t(const string _subject,const T _startTime,const T _endTime) : subject(_subject), startTime(_startTime), endTime(_endTime){};
-	virtual ~Meeting_t(){}
+
+	Meeting_t(const Meeting_t& meeting) :            // copy constructor, in order to copy meetings between days.
+		subject(meeting.getsubject()), startTime(meeting.getStartTime()), endTime(meeting.getEndTime()){};
+
+	virtual ~Meeting_t(){};
 
 	// Accessors
 	void setsubject(const string _subject)
