@@ -4,7 +4,7 @@
 #include "Test_t.h"
 #include "ExtendedMeeting_t.h"
 
-
+#define MAX_INT (2147483647)
 
 //==============================================================
 Meeting_t<int>* getMeetingInt()
@@ -104,7 +104,6 @@ int main() {
 		Test_t<int>* test = new Test_t<int>(calName);
 		while (cont) {
 			unsigned int c;
-			Meeting_t<int>* meetingInt;
 
 			cout << "Enter your choice:" << endl
 				<< "1 - add meeting" << endl
@@ -144,6 +143,8 @@ int main() {
 			}
 
 			cout << "----------------------------------------------" << endl;
+			cin.clear();
+			fflush(stdin);
 		}
 		delete test;
 
@@ -153,7 +154,6 @@ int main() {
 		Test_t<float>* test = new Test_t<float>(calName);
 		while (cont) {
 			unsigned int c;
-			Meeting_t<float>* meetingFloat;
 
 			cout << "Enter your choice:" << endl
 				<< "1 - add meeting" << endl
@@ -193,7 +193,9 @@ int main() {
 			}
 
 			cout << "----------------------------------------------" << endl;
-
+			cin.clear();
+			fflush(stdin);
+			
 		}
 		delete test;
 	}

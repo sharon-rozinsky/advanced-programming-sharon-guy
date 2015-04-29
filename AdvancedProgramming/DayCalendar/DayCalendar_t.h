@@ -21,7 +21,14 @@ public:
 		for (iterator = meetings.begin(); iterator < meetings.end(); iterator++)
 		{
 			meeting = *iterator;
-			delete meeting;
+			if (ExtendedMeeting_t<T>* extMeeting = dynamic_cast<ExtendedMeeting_t<T>*>(meeting))
+			{
+				delete extMeeting;
+			}
+			else
+			{
+				delete meeting;
+			}
 		}
 	}
 
@@ -36,7 +43,7 @@ public:
 	}
 
 	// Class Methods
-	void printCalendar()
+	virtual void printCalendar()
 	{
 		Meeting_t<T>* meeting;
 		typename std::vector<Meeting_t<T>*>::iterator iterator;
@@ -52,14 +59,15 @@ public:
 	}
 	void addMeeting(Meeting_t<T>* meeting)
 	{
-		if (isOverlapping(*meeting))
-		{
-			string exceptionMsg = "The meeting overlaps another meeting, please set a different time";
-			throw(exceptionMsg);
-		}
-		else if (!verifyMeetingHours(*meeting))
+		
+		if (!verifyMeetingHours(*meeting))
 		{
 			string exceptionMsg = "The meeting is defined with incorrect hours, please choose [0-24] as hours";
+			throw(exceptionMsg);
+		}
+		else if (isOverlapping(*meeting))
+		{
+			string exceptionMsg = "The meeting overlaps another meeting, please set a different time";
 			throw(exceptionMsg);
 		}
 		else
@@ -68,10 +76,11 @@ public:
 			sort(meetings.begin(), meetings.end(), PointerCompare());
 		}
 	}
-	void removeMeeting(T startTime)
+	void removeMeeting(const T startTime)
 	{
 		bool deleteMeeting = false;
-		typename std::vector<Meeting_t<T>*>::iterator iterator, meetingToDelete;
+		typename std::vector<Meeting_t<T>*>::iterator iterator, meetingToDeleteIter;
+		Meeting_t<T>* meetingToDelete;
 
 		for (iterator = meetings.begin(); iterator < meetings.end(); iterator++)
 		{
@@ -79,16 +88,25 @@ public:
 			if (meeting->getStartTime() == startTime)
 			{
 				deleteMeeting = true;
-				meetingToDelete = iterator;
+				meetingToDeleteIter = iterator;
+				meetingToDelete = meeting;
 			}
 		}
 
 		if (deleteMeeting)
 		{
-			meetings.erase(meetingToDelete);
-		}
+			meetings.erase(meetingToDeleteIter);
+			if (ExtendedMeeting_t<T>* extMeeting = dynamic_cast<ExtendedMeeting_t<T>*>(meetingToDelete))
+			{
+				delete extMeeting;
+			}
+			else
+			{
+				delete meetingToDelete;
+			}
+		} 
 	}
-	Meeting_t<T>* findMeeting(T startTime)
+	virtual Meeting_t<T>* findMeeting(const T startTime) const
 	{
 		for (int i = 0; i < meetings.size(); i++)
 		{
@@ -99,7 +117,7 @@ public:
 		// TODO: replace with throw exception
 		return NULL;
 	}
-	void addMeetingLocation(T startTime, string meetingLocation)
+	void addMeetingLocation(const T startTime,const string meetingLocation)
 	{
 		Meeting_t<T>* meeting = findMeeting(startTime);
 		ExtendedMeeting_t<T>* meetingWithLocation;
@@ -151,9 +169,13 @@ private:
 
 	bool verifyMeetingHours(const Meeting_t<T> meeting)
 	{
-		if (meeting.getStartTime() < 0 || meeting.getStartTime() > 24)
+		T startTime = meeting.getStartTime();
+		T endTime = meeting.getEndTime();
+		if (startTime < 0 || startTime > 24)
 			return false;
-		if (meeting.getEndTime() < 0 || meeting.getEndTime() > 24)
+		if (endTime < 0 || endTime > 24)
+			return false;
+		if (endTime <= startTime)
 			return false;
 		return true;
 	}

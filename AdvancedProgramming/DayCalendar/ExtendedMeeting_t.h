@@ -12,7 +12,7 @@ class ExtendedMeeting_t : public Meeting_t<T>{
 public:
 	// Ctor's
 	ExtendedMeeting_t();
-	ExtendedMeeting_t(const string _subject, T _startTime, T _endTime, const string _location) : Meeting_t(_subject, _startTime, _endTime), location(_location) {};
+	ExtendedMeeting_t(const string _subject,const T _startTime,const T _endTime, const string _location) : Meeting_t(_subject, _startTime, _endTime), location(_location) {};
 
 	// Accessors
 	void setLocation(const string _location)
@@ -25,7 +25,7 @@ public:
 	}
 
 	// Class Methods
-	void printMeeting()
+	virtual void printMeeting()
 	{
 		cout << subject << ": " << startTime << " - " << endTime << "; Meeting location: " << location << endl;
 	}

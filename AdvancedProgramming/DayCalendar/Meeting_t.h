@@ -11,7 +11,7 @@ class Meeting_t {
 public:
 	// Ctor's
 	Meeting_t();
-	Meeting_t(const string _subject, T _startTime, T _endTime) : subject(_subject), startTime(_startTime), endTime(_endTime){};
+	Meeting_t(const string _subject,const T _startTime,const T _endTime) : subject(_subject), startTime(_startTime), endTime(_endTime){};
 
 	// Accessors
 	void setsubject(const string _subject)
@@ -22,7 +22,7 @@ public:
 	{
 		return subject;
 	}
-	void setStartTime(T _startTime)
+	void setStartTime(const T _startTime)
 	{
 		startTime = _startTime;
 	}
@@ -30,7 +30,7 @@ public:
 	{
 		return startTime;
 	}
-	void setEndTime(T _endTime)
+	void setEndTime(const T _endTime)
 	{
 		endTime = _endTime;
 	}
