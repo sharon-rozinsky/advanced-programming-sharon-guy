@@ -13,6 +13,7 @@ public:
 	// Ctor's
 	ExtendedMeeting_t();
 	ExtendedMeeting_t(const string _subject,const T _startTime,const T _endTime, const string _location) : Meeting_t(_subject, _startTime, _endTime), location(_location) {};
+	virtual ~ExtendedMeeting_t(){}
 
 	// Accessors
 	void setLocation(const string _location)

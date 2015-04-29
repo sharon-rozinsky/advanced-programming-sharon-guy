@@ -21,14 +21,7 @@ public:
 		for (iterator = meetings.begin(); iterator < meetings.end(); iterator++)
 		{
 			meeting = *iterator;
-			if (ExtendedMeeting_t<T>* extMeeting = dynamic_cast<ExtendedMeeting_t<T>*>(meeting))
-			{
-				delete extMeeting;
-			}
-			else
-			{
-				delete meeting;
-			}
+			delete meeting;
 		}
 	}
 
@@ -96,14 +89,7 @@ public:
 		if (deleteMeeting)
 		{
 			meetings.erase(meetingToDeleteIter);
-			if (ExtendedMeeting_t<T>* extMeeting = dynamic_cast<ExtendedMeeting_t<T>*>(meetingToDelete))
-			{
-				delete extMeeting;
-			}
-			else
-			{
-				delete meetingToDelete;
-			}
+			delete meetingToDelete;
 		} 
 	}
 	virtual Meeting_t<T>* findMeeting(const T startTime) const

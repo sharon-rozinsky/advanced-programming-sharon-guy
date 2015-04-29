@@ -12,6 +12,7 @@ public:
 	// Ctor's
 	Meeting_t();
 	Meeting_t(const string _subject,const T _startTime,const T _endTime) : subject(_subject), startTime(_startTime), endTime(_endTime){};
+	virtual ~Meeting_t(){}
 
 	// Accessors
 	void setsubject(const string _subject)
